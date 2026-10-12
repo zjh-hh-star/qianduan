@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>Shape Hover Demo</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #171923;
+    }
+
+    .stage {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .shape {
+        width: 110px;
+        height: 110px;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .shape::after {
+        content: "hover";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .shape:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .shape:hover::after {
+        opacity: 1;
+    }
+
+    /* 1. 橙色矩形 */
+    .s1 {
+        background: linear-gradient(135deg, #ff7a59 0%, #ff9b42 100%);
+        box-shadow: 0 10px 18px rgba(255, 122, 89, 0.35);
+    }
+
+    /* 2. 绿色正方形 */
+    .s2 {
+        background: linear-gradient(135deg, #2ed573 0%, #3be0a5 100%);
+        box-shadow: 0 10px 18px rgba(46, 213, 115, 0.35);
+    }
+
+    /* 3. 紫色圆角方形 */
+    .s3 {
+        border-radius: 24px;
+        background: linear-gradient(135deg, #b7a7d6 0%, #9f8bc7 100%);
+        box-shadow: 0 10px 18px rgba(159, 139, 199, 0.35);
+    }
+
+    /* 4. 黄色圆形 */
+    .s4 {
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffd36e 0%, #ffb347 100%);
+        box-shadow: 0 10px 18px rgba(255, 179, 71, 0.4);
+    }
+
+    /* 5. 灰绿色方形 */
+    .s5 {
+        background: linear-gradient(135deg, #607878 0%, #465959 100%);
+        box-shadow: 0 10px 18px rgba(70, 89, 89, 0.35);
+    }
+
+    /* 6. 紫色圆形 */
+    .s6 {
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d4c5e8 0%, #b8a7db 100%);
+        box-shadow: 0 10px 18px rgba(184, 167, 219, 0.35);
+    }
+</style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+        <div class="shape s4"></div>
+        <div class="shape s5"></div>
+        <div class="shape s6"></div>
+        <div class="shape s7"></div>
+    </div>
+
+    <script>
+        const shapes = document.querySelectorAll(".shape");
+
+        shapes.forEach(shape => {
+            shape.addEventListener("mouseenter", () => {
+                shape.style.transform = "translateY(-10px)";
+                shape.style.boxShadow = "0 0 0 rgba(0, 0, 0, 0)";
+            });
+
+            shape.addEventListener("mouseleave", () => {
+                shape.style.transform = "";
+                shape.style.boxShadow = "";
+            });
+        });
+    </script>
+</body>
+</html>
